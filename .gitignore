@@ -1,0 +1,14 @@
+led / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+
+
+# Use wildcards as well
+*~
+
+# Can also ignore all directories and files in a directory.
+py-test/**/*
+
