@@ -36,17 +36,25 @@ def main():
     print(args.file)
     for f in args.file:
         for filename in f:
-            print(filename + ' ', end="")
-            print(os.path.exists(filename))
+            print(filename + ' ')
+            ## print(os.path.exists(filename))
             if (os.path.exists(filename)):
-                print('Basename: ' + os.path.basename(filename))
+                print('Basename (old): ' + os.path.basename(filename))
                 print('Dirname:  ' + os.path.dirname(filename))
-                print('Basename: ' + os.path.basename(filename).title())
-                basename = os.path.basename(filename).title()
-                new_filename = ''
+                print('Basename (new): ' + os.path.basename(filename).title())
+                ## basename = os.path.basename(filename).title()
+                fullname = os.path.basename(filename)
+                basename, extension = os.path.splitext(fullname)
+                basename = basename.title()
+                print(basename + "      " + extension)
+                packed_filename = ''
                 for p in basename.split():
-                    new_filename += p
+                    packed_filename += p
+                print(packed_filename)
+                packed_filename += extension
+                new_filename = os.path.join(os.path.dirname(filename), packed_filename)
                 print(new_filename)
+                os.rename(filename, new_filename)
             print()
         
     # get the current working directory
